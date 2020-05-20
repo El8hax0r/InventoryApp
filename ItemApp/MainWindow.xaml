@@ -1,0 +1,68 @@
+﻿<Window x:Class="ItemApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ItemApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="900">
+
+    <StackPanel>
+        <Menu>
+            <MenuItem Header="_File">
+                <MenuItem x:Name="uxAdd" Header="_Add" Click="uxAdd_Click"/>
+                <MenuItem x:Name="uxChange" Header="_Change" Click="uxChange_Click" />
+                <MenuItem x:Name="uxDelete" Header="_Delete" Click="uxDelete_Click"/>
+                <MenuItem x:Name="uxList" Header="_List" Click="uxList_Click"/>
+                <MenuItem x:Name="uxQuit" Header="_Quit" Click="uxQuit_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <ListView x:Name="uxItemList" Height="200" SelectionChanged="uxItemList_SelectionChanged">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="uxContextRecordAdd" Header="_Add" Click="uxAdd_Click"/>
+                    <MenuItem x:Name="uxContextRecordChange" Header="_Change" Click="uxChange_Click"/>
+                    <MenuItem x:Name="uxContextRecordDelete" Header="_Delete" Click="uxDelete_Click"/>
+                    <MenuItem x:Name="uxContextRecordList" Header="_List" Click="uxList_Click"/>
+                    <MenuItem x:Name="uxContextRecordQuit" Header="_Quit" Click="uxQuit_Click"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding ItemNumber}" Width="50">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Item #" Tag="ItemNumber" Click="GridViewColumnHeader_Click"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Description}" Width="350">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Item Description" Tag="Description" Click="GridViewColumnHeader_Click"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding PricePerItem}" Width="100">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Price Per Item" Tag="PricePerItem" Click="GridViewColumnHeader_Click"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding QuantityOnHand}" Width="120">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Quantity On Hand" Tag="QuantityOnHand" Click="GridViewColumnHeader_Click"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding OurCostPerItem}" Width="120">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Our Cost Per Item" Tag="OurCostPerItem" Click="GridViewColumnHeader_Click"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding ItemsTotalValue}" Width="120">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Items Total Value" Tag="ItemsTotalValue" Click="GridViewColumnHeader_Click"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </StackPanel>
+</Window>
