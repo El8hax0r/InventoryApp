@@ -93,7 +93,7 @@ namespace ItemRepository
 
         private Item ToDbModel(ItemModel ItemModel)
         {
-            var contactDb = new Item
+            var itemDb = new Item
             {
                 OurCostPerItem = ItemModel.OurCostPerItem,
                 //ContactCreatedDate = ItemModel.CreatedDate, not sure what to do with this
@@ -105,7 +105,7 @@ namespace ItemRepository
                 PricePerItem = Convert.ToDouble(ItemModel.PricePerItem),
             };
 
-            return contactDb;
+            return itemDb;
         }
     }
 }

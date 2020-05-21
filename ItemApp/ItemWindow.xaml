@@ -33,10 +33,10 @@
         <TextBox x:Name="uxPricePerItem" Grid.Column="1" Grid.Row="2"></TextBox>
 
         <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right">Quantity On Hand:</TextBlock>
-        <TextBox x:Name="uxQuantityOnHand" Grid.Column="1" Grid.Row="2"></TextBox>
+        <TextBox x:Name="uxQuantityOnHand" Grid.Column="1" Grid.Row="3"></TextBox>
 
-        <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right">Our Cost Per Item</TextBlock>
-        <TextBox x:Name="uxOurCostPerItem" Grid.Column="1" Grid.Row="2"></TextBox>
+        <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right">Our Cost Per Item:</TextBlock>
+        <TextBox x:Name="uxOurCostPerItem" Grid.Column="1" Grid.Row="5"></TextBox>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right">
             <Button x:Name="uxSubmit"  MinWidth="10" HorizontalAlignment="Center" Click="uxSubmit_Click" Margin="10">Add</Button>

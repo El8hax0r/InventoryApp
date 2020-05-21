@@ -21,7 +21,7 @@
         <ListView x:Name="uxItemList" Height="200" SelectionChanged="uxItemList_SelectionChanged">
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="uxContextFileNew" Header="_Add" Click="uxAdd_Click"/>
+                    <MenuItem x:Name="uxContextFileNew" Header="_Add" Click="uxFileNew_Click"/>
                     <MenuItem x:Name="uxContextFileChange" Header="_Change" Click="uxFileChange_Click"/>
                     <MenuItem x:Name="uxContextFileDelete" Header="_Delete" Click="uxFileDelete_Click"/>
                     <MenuItem x:Name="uxContextRecordList" Header="_List" Click="uxList_Click"/>

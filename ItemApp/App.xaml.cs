@@ -13,5 +13,19 @@ namespace ItemApp
     /// </summary>
     public partial class App : Application
     {
+        private static ItemRepository.ItemRepository itemRepository;
+
+        static App()
+        {
+            itemRepository = new ItemRepository.ItemRepository();
+        }
+
+        public static ItemRepository.ItemRepository ItemRepository
+        {
+            get
+            {
+                return ItemRepository;
+            }
+        }
     }
 }

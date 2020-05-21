@@ -1,10 +1,14 @@
-﻿using System;
+﻿using System.Windows;
+using System.Windows.Controls;
+using ItemRepository;
+using ItemApp;
+using ItemApp.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -51,9 +55,8 @@ namespace ItemApp
                 var repositoryItemModel = uiItemModel.ToRepositoryModel();
 
                 App.ItemRepository.Add(repositoryItemModel);
-
                 // OR
-                //App.ContactRepository.Add(window.Contact.ToRepositoryModel());
+                //App.ItemRepository.Add(window.Item.ToRepositoryModel());
             }
         }
 
