@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ItemDB
 {
-    public partial class Items
+    public partial class Item
     {
         public int ItemId { get; set; }
         public int ItemNumber { get; set; }

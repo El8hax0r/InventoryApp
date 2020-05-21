@@ -15,7 +15,7 @@ namespace ItemDB
         {
         }
 
-        public virtual DbSet<Items> Items { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,7 +28,7 @@ namespace ItemDB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Items>(entity =>
+            modelBuilder.Entity<Item>(entity =>
             {
                 entity.HasKey(e => e.ItemId)
                     .HasName("PK_User");
