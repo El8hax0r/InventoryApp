@@ -5,7 +5,7 @@ using ItemDB;
 
 namespace ItemRepository
 {
-    public static class DatabaseManager
+    public static class DatabaseManager 
     {
         private static readonly InventoryContext entities;
 

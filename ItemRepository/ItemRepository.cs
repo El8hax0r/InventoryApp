@@ -6,12 +6,12 @@ using System.Linq;
 
 namespace ItemRepository
 {
-    public class ItemModel
+    public class ItemModel //this opens the database - then abstracts to next layer
     {
         //these can all be abstracted but are explicit for readability
         public int Id { get; set; }
         public string ItemNumber { get; set; }
-        public string Description { get; set; }
+        public string ItemDescription { get; set; }
         public string PricePerItem { get; set; }
         public string QuantityOnHand { get; set; }
         public int OurCostPerItem { get; set; }
@@ -32,7 +32,7 @@ namespace ItemRepository
             {
                 OurCostPerItem = (int)itemDb.OurCostPerItem,
                 //CreatedDate = itemDb.ItemCreatedDate, not sure what to do with this
-                Description =itemDb.Description,
+                ItemDescription =itemDb.Description,
                 Id = itemDb.ItemId,
                 ItemNumber = itemDb.ItemNumber.ToString(),
                 TotalItemsValue = itemDb.TotalItemsValue.ToString(),
@@ -50,7 +50,7 @@ namespace ItemRepository
               {
                   OurCostPerItem = (int)t.OurCostPerItem,
                   //CreatedDate = t.CreatedDate, not sure what to do with this?
-                  Description = t.Description,
+                  ItemDescription = t.Description,
                   Id = t.ItemId,
                   ItemNumber = t.ItemNumber.ToString(),
                   TotalItemsValue = t.TotalItemsValue.ToString(),
@@ -97,12 +97,12 @@ namespace ItemRepository
             {
                 OurCostPerItem = ItemModel.OurCostPerItem,
                 //ContactCreatedDate = ItemModel.CreatedDate, not sure what to do with this
-                Description = ItemModel.Description,
+                Description = ItemModel.ItemDescription,
                 ItemId = ItemModel.Id,
                 ItemNumber = Convert.ToInt32(ItemModel.ItemNumber),
-                TotalItemsValue = Convert.ToInt32(ItemModel.TotalItemsValue),
+                TotalItemsValue = Convert.ToDouble(ItemModel.TotalItemsValue),
                 QuantityOnHand = Convert.ToInt32(ItemModel.QuantityOnHand),
-                PricePerItem = Convert.ToInt32(ItemModel.PricePerItem),
+                PricePerItem = Convert.ToDouble(ItemModel.PricePerItem),
             };
 
             return contactDb;

@@ -40,21 +40,32 @@ namespace ItemApp
             InitializeComponent();
         }
 
-        private void uxAdd_Click(object sender, RoutedEventArgs e)
+        private void uxFileNew_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new ItemWindow();
+
+            if (window.ShowDialog() == true)
+            {
+                var uiItemModel = window.Item;
+
+                var repositoryItemModel = uiItemModel.ToRepositoryModel();
+
+                App.ItemRepository.Add(repositoryItemModel);
+
+                // OR
+                //App.ContactRepository.Add(window.Contact.ToRepositoryModel());
+            }
+        }
+
+        private void uxFileChange_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void uxChange_Click(object sender, RoutedEventArgs e)
+        private void uxFileDelete_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
-        private void uxDelete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void uxList_Click(object sender, RoutedEventArgs e)
         {
 
@@ -64,7 +75,6 @@ namespace ItemApp
         {
 
         }
-
         private void uxItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

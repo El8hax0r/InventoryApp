@@ -10,9 +10,9 @@
     <StackPanel>
         <Menu>
             <MenuItem Header="_File">
-                <MenuItem x:Name="uxAdd" Header="_Add" Click="uxAdd_Click"/>
-                <MenuItem x:Name="uxChange" Header="_Change" Click="uxChange_Click" />
-                <MenuItem x:Name="uxDelete" Header="_Delete" Click="uxDelete_Click"/>
+                <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click"/>
+                <MenuItem x:Name="uxFileChange" Header="_Change" Click="uxFileChange_Click" />
+                <MenuItem x:Name="uxFileDelete" Header="_Delete" Click="uxFileDelete_Click"/>
                 <MenuItem x:Name="uxList" Header="_List" Click="uxList_Click"/>
                 <MenuItem x:Name="uxQuit" Header="_Quit" Click="uxQuit_Click"/>
             </MenuItem>
@@ -21,9 +21,9 @@
         <ListView x:Name="uxItemList" Height="200" SelectionChanged="uxItemList_SelectionChanged">
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="uxContextRecordAdd" Header="_Add" Click="uxAdd_Click"/>
-                    <MenuItem x:Name="uxContextRecordChange" Header="_Change" Click="uxChange_Click"/>
-                    <MenuItem x:Name="uxContextRecordDelete" Header="_Delete" Click="uxDelete_Click"/>
+                    <MenuItem x:Name="uxContextFileNew" Header="_Add" Click="uxAdd_Click"/>
+                    <MenuItem x:Name="uxContextFileChange" Header="_Change" Click="uxFileChange_Click"/>
+                    <MenuItem x:Name="uxContextFileDelete" Header="_Delete" Click="uxFileDelete_Click"/>
                     <MenuItem x:Name="uxContextRecordList" Header="_List" Click="uxList_Click"/>
                     <MenuItem x:Name="uxContextRecordQuit" Header="_Quit" Click="uxQuit_Click"/>
                 </ContextMenu>
