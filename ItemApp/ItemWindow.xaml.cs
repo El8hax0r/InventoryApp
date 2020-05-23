@@ -23,13 +23,13 @@ namespace ItemApp
         {
             Item = new ItemModel();
 
-            Item.ItemNumber = uxItemNumber.Text;
+            Item.ItemNumber = 0; //Convert.ToInt32(uxItemNumber.Text);
             Item.ItemDescription = uxItemDescription.Text;
-            Item.PricePerItem = uxPricePerItem.Text;
-            Item.QuantityOnHand = uxQuantityOnHand.ToString();
-            Item.TotalItemsValue = ((Convert.ToDouble(Item.PricePerItem)) * (Convert.ToDouble(Item.QuantityOnHand))).ToString();
-            Item.OurCostPerItem = Convert.ToInt32(uxOurCostPerItem); //used to contain uxOurCostPerItem.Text
-            Item.CreatedDate = DateTime.Now;
+            Item.PricePerItem = 0; //uxPricePerItem.Text;
+            Item.QuantityOnHand = 0; //uxQuantityOnHand;
+            //Item.TotalItemsValue = ((Convert.ToDouble(Item.PricePerItem)) * (Convert.ToDouble(Item.QuantityOnHand))).ToString();
+            Item.OurCostPerItem = 0; // Convert.ToDouble(uxOurCostPerItem.Text); //used to contain uxOurCostPerItem.Text
+            Item.CreatedDate = DateTime.UtcNow; //UTC
 
             // This is the return value of ShowDialog( ) below
             DialogResult = true;
@@ -41,6 +41,20 @@ namespace ItemApp
             // This is the return value of ShowDialog( ) below
             DialogResult = false;
             Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Item != null)
+            {
+                uxSubmit.Content = "Update";
+            }
+            else
+            {
+                Item = new ItemModel();
+                Item.CreatedDate = DateTime.Now;
+            }
+            uxGrid.DataContext = Item;
         }
     }
 }

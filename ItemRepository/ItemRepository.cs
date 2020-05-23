@@ -10,64 +10,64 @@ namespace ItemRepository
     {
         //these can all be abstracted but are explicit for readability
         public int Id { get; set; }
-        public string ItemNumber { get; set; }
+        public int ItemNumber { get; set; }
         public string ItemDescription { get; set; }
-        public string PricePerItem { get; set; }
-        public string QuantityOnHand { get; set; }
-        public int OurCostPerItem { get; set; }
-        public string TotalItemsValue { get; set; }
+        public double PricePerItem { get; set; }
+        public int QuantityOnHand { get; set; }
+        public double OurCostPerItem { get; set; }
+        public double TotalItemsValue { get; set; }
         public System.DateTime CreatedDate { get; set; }
     }
 
     public class ItemRepository //Maps to the database table Item(s?)
     {
-        public ItemModel Add(ItemModel ItemModel)
+        public ItemModel Add(ItemModel itemModel)
         {
-            var itemDb = ToDbModel(ItemModel);
+            var itemDb = ToDbModel(itemModel);
 
-            DatabaseManager.Instance.Items.Add(itemDb);
+            DatabaseManager.Instance.Item.Add(itemDb);
             DatabaseManager.Instance.SaveChanges();
 
-            ItemModel = new ItemModel
+            itemModel = new ItemModel
             {
-                OurCostPerItem = (int)itemDb.OurCostPerItem,
-                //CreatedDate = itemDb.ItemCreatedDate, not sure what to do with this
-                ItemDescription =itemDb.Description,
+                OurCostPerItem = itemDb.OurCostPerItem,
+                CreatedDate = itemDb.ItemCreatedDate, //not sure what to do with this
+                ItemDescription = itemDb.ItemDescription, //this should be "Description = "
                 Id = itemDb.ItemId,
-                ItemNumber = itemDb.ItemNumber.ToString(),
-                TotalItemsValue = itemDb.TotalItemsValue.ToString(),
-                QuantityOnHand = itemDb.QuantityOnHand.ToString(),
-                PricePerItem = itemDb.PricePerItem.ToString()
+                ItemNumber = itemDb.ItemNumber,
+                TotalItemsValue = itemDb.TotalItemsValue,
+                QuantityOnHand = itemDb.QuantityOnHand,
+                PricePerItem = itemDb.PricePerItem
             };
-            return ItemModel;
+            return itemModel;
         }
 
         public List<ItemModel> GetAll()
         {
             // Use .Select() to map the database items to ItemModel
-            var items = DatabaseManager.Instance.Items
+            var items = DatabaseManager.Instance.Item
               .Select(t => new ItemModel
               {
-                  OurCostPerItem = (int)t.OurCostPerItem,
-                  //CreatedDate = t.CreatedDate, not sure what to do with this?
-                  ItemDescription = t.Description,
+                  OurCostPerItem = t.OurCostPerItem,
+                  //CreatedDate = t.ItemCreatedDate, //not sure what to do with this?
+                  ItemDescription = t.ItemDescription,
                   Id = t.ItemId,
-                  ItemNumber = t.ItemNumber.ToString(),
-                  TotalItemsValue = t.TotalItemsValue.ToString(),
-                  QuantityOnHand = t.QuantityOnHand.ToString(),
-                  PricePerItem = t.PricePerItem.ToString(),
+                  ItemNumber = t.ItemNumber,
+                  TotalItemsValue = t.TotalItemsValue,
+                  QuantityOnHand = t.QuantityOnHand,
+                  PricePerItem = t.PricePerItem,
               }).ToList();
 
             return items;
         }
 
-        public bool Update(ItemModel ItemModel)
+        public bool Update(ItemModel itemModel)
         {
-            var original = DatabaseManager.Instance.Items.Find(ItemModel.Id);
+            var original = DatabaseManager.Instance.Item.Find(itemModel.Id);
 
             if (original != null)
             {
-                DatabaseManager.Instance.Entry(original).CurrentValues.SetValues(ToDbModel(ItemModel));
+                DatabaseManager.Instance.Entry(original).CurrentValues.SetValues(ToDbModel(itemModel));
                 DatabaseManager.Instance.SaveChanges();
                 return true;
             }
@@ -77,7 +77,7 @@ namespace ItemRepository
 
         public bool Remove(int itemId)
         {
-            var items = DatabaseManager.Instance.Items
+            var items = DatabaseManager.Instance.Item                   //will this var need to be renamed?? it's also "items" in examples...
                                 .Where(t => t.ItemId == itemId);
 
             if (items.Count() == 0)
@@ -85,24 +85,24 @@ namespace ItemRepository
                 return false;
             }
 
-            DatabaseManager.Instance.Items.Remove(items.First());
+            DatabaseManager.Instance.Item.Remove(items.First());
             DatabaseManager.Instance.SaveChanges();
 
             return true;
         }
 
-        private Item ToDbModel(ItemModel ItemModel)
+        private Item ToDbModel(ItemModel itemModel)
         {
             var itemDb = new Item
             {
-                OurCostPerItem = ItemModel.OurCostPerItem,
-                //ContactCreatedDate = ItemModel.CreatedDate, not sure what to do with this
-                Description = ItemModel.ItemDescription,
-                ItemId = ItemModel.Id,
-                ItemNumber = Convert.ToInt32(ItemModel.ItemNumber),
-                TotalItemsValue = Convert.ToDouble(ItemModel.TotalItemsValue),
-                QuantityOnHand = Convert.ToInt32(ItemModel.QuantityOnHand),
-                PricePerItem = Convert.ToDouble(ItemModel.PricePerItem),
+                OurCostPerItem = itemModel.OurCostPerItem, //doc says these should all be "itemModel."
+                ItemCreatedDate = itemModel.CreatedDate,
+                ItemDescription = itemModel.ItemDescription,
+                ItemId = itemModel.Id,
+                ItemNumber = itemModel.ItemNumber,
+                TotalItemsValue = itemModel.TotalItemsValue,
+                QuantityOnHand = itemModel.QuantityOnHand,
+                PricePerItem = itemModel.PricePerItem,
             };
 
             return itemDb;

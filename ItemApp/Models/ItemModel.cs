@@ -7,12 +7,12 @@ namespace ItemApp.Models
     public class ItemModel
     {
         public int Id { get; set; }
-        public string ItemNumber { get; set; }
+        public int ItemNumber { get; set; }
         public string ItemDescription { get; set; }
-        public string PricePerItem { get; set; }
-        public string QuantityOnHand { get; set; }
-        public int OurCostPerItem { get; set; }
-        public string TotalItemsValue { get; set; }
+        public double PricePerItem { get; set; }
+        public int QuantityOnHand { get; set; }
+        public double OurCostPerItem { get; set; }
+        public double TotalItemsValue { get; set; }
         public DateTime CreatedDate { get; set; }
 
         public ItemRepository.ItemModel ToRepositoryModel()

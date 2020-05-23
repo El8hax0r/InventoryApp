@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ItemApp"
         mc:Ignorable="d"
         Title="ItemWindow" Width="300" Height="240"
-        FocusManager.FocusedElement="{Binding ElementName=uxItemNumber}">
+        FocusManager.FocusedElement="{Binding ElementName=uxItemNumber}"
+        Loaded="Window_Loaded" >
 
     <Grid x:Name="uxGrid">
         <Grid.ColumnDefinitions>

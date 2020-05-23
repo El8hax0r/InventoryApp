@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using ItemRepository;
 using ItemApp;
 using ItemApp.Models;
 using System;
@@ -42,6 +41,30 @@ namespace ItemApp
         public MainWindow()
         {
             InitializeComponent();
+
+            LoadItems();
+        }
+        private void LoadItems()
+        {
+            var items = App.ItemRepository.GetAll();
+
+            uxItemList.ItemsSource = items //".ItemsSource" is in the example, maybe needs changed?
+                .Select(t => ItemModel.ToModel(t)) //.ItemModel.ToModel?
+                // or // 
+                //.Select(RepositoryItem => ItemModel.ToModel(RepositoryItem))
+                .ToList();
+
+            // OR
+            //var uiItemModelList = new List<ItemModel>();
+            //foreach (var repositoryItemModel in items)
+            //{
+            //    This is the .Select(t => ... )
+            //    var uiItemModel = ItemModel.ToModel(repositoryItemModel);
+            //
+            //    uiItemModelList.Add(uiItemModel);
+            //}
+
+            //uxItemList.ItemsSource = uiItemModelList;
         }
 
         private void uxFileNew_Click(object sender, RoutedEventArgs e)
@@ -57,17 +80,28 @@ namespace ItemApp
                 App.ItemRepository.Add(repositoryItemModel);
                 // OR
                 //App.ItemRepository.Add(window.Item.ToRepositoryModel());
+
+                //LoadContacts();
             }
         }
 
         private void uxFileChange_Click(object sender, RoutedEventArgs e)
         {
+            var window = new ItemWindow();
+            window.Item = selectedItem;
 
+            if (window.ShowDialog() == true)
+            {
+                App.ItemRepository.Update(window.Item.ToRepositoryModel());
+                LoadItems();
+            }
         }
 
         private void uxFileDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            App.ItemRepository.Remove(selectedItem.Id);
+            selectedItem = null;
+            LoadItems();
         }
         private void uxList_Click(object sender, RoutedEventArgs e)
         {
@@ -78,14 +112,29 @@ namespace ItemApp
         {
 
         }
+        private ItemModel selectedItem;
         private void uxItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            selectedItem = (ItemModel)uxItemList.SelectedValue;
         }
 
         private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
         {
+            var column = (sender as GridViewColumnHeader);
 
+            string sortBy = column.Tag.ToString();
+            //if (listviewsort)
+        }
+
+        private void uxFileDelete_Loaded(object sender, RoutedEventArgs e)
+        {
+            uxFileDelete.IsEnabled = (selectedItem != null);
+        }
+
+        private void uxFileChange_Loaded(object sender, RoutedEventArgs e)
+        {
+            uxFileChange.IsEnabled = (selectedItem != null);
+            uxContextFileChange.IsEnabled = uxFileChange.IsEnabled;
         }
     }
 }

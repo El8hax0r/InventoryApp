@@ -15,7 +15,7 @@ namespace ItemDB
         {
         }
 
-        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Item> Item { get; set; } //this used to be "Items"
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,7 +35,7 @@ namespace ItemDB
 
                 entity.Property(e => e.ItemId).HasColumnName("ItemID");
 
-                entity.Property(e => e.Description)
+                entity.Property(e => e.ItemDescription)
                     .IsRequired()
                     .HasMaxLength(50);
             });

@@ -24,7 +24,7 @@ namespace ItemApp
         {
             get
             {
-                return ItemRepository;
+                return itemRepository;
             }
         }
     }

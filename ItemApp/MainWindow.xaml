@@ -11,8 +11,8 @@
         <Menu>
             <MenuItem Header="_File">
                 <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click"/>
-                <MenuItem x:Name="uxFileChange" Header="_Change" Click="uxFileChange_Click" />
-                <MenuItem x:Name="uxFileDelete" Header="_Delete" Click="uxFileDelete_Click"/>
+                <MenuItem x:Name="uxFileChange" Header="_Change" Click="uxFileChange_Click" Loaded="uxFileChange_Loaded"/>
+                <MenuItem x:Name="uxFileDelete" Header="_Delete" Click="uxFileDelete_Click" Loaded="uxFileDelete_Loaded"/>
                 <MenuItem x:Name="uxList" Header="_List" Click="uxList_Click"/>
                 <MenuItem x:Name="uxQuit" Header="_Quit" Click="uxQuit_Click"/>
             </MenuItem>
@@ -35,9 +35,9 @@
                             <GridViewColumnHeader Content="Item #" Tag="ItemNumber" Click="GridViewColumnHeader_Click"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Description}" Width="350">
+                    <GridViewColumn DisplayMemberBinding="{Binding ItemDescription}" Width="350">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Item Description" Tag="Description" Click="GridViewColumnHeader_Click"/>
+                            <GridViewColumnHeader Content="Item Description" Tag="ItemDescription" Click="GridViewColumnHeader_Click"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding PricePerItem}" Width="100">
