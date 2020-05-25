@@ -75,10 +75,10 @@ namespace ItemRepository
             return false;
         }
 
-        public bool Remove(int itemId)
+        public bool Remove(int itemNumber) //used to be itemId
         {
             var things = DatabaseManager.Instance.Items //will this var need to be renamed?? it's also "items" in examples...
-                                .Where(t => t.ItemId == itemId); //used to be "== ItemID or == Id"
+                                .Where(t => t.ItemNumber == itemNumber); //used to be ".Where(t => t.ItemId == itemId);"
 
             if (things.Count() == 0)
             {
