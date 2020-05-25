@@ -44,14 +44,15 @@ namespace ItemApp
 
             LoadItems();
         }
+        private ItemModel selectedItem;
         private void LoadItems()
         {
             var items = App.ItemRepository.GetAll();
 
             uxItemList.ItemsSource = items //".ItemsSource" is in the example, maybe needs changed?
                 .Select(t => ItemModel.ToModel(t)) //.ItemModel.ToModel?
-                // or // 
-                //.Select(RepositoryItem => ItemModel.ToModel(RepositoryItem))
+                                                   // or // 
+                                                   //.Select(RepositoryItem => ItemModel.ToModel(RepositoryItem))
                 .ToList();
 
             // OR
@@ -81,7 +82,7 @@ namespace ItemApp
                 // OR
                 //App.ItemRepository.Add(window.Item.ToRepositoryModel());
 
-                //LoadContacts();
+                LoadItems();
             }
         }
 
@@ -99,20 +100,19 @@ namespace ItemApp
 
         private void uxFileDelete_Click(object sender, RoutedEventArgs e)
         {
-            App.ItemRepository.Remove(selectedItem.Id);
+            App.ItemRepository.Remove(selectedItem.ItemNumber);
             selectedItem = null;
             LoadItems();
         }
         private void uxList_Click(object sender, RoutedEventArgs e)
         {
-
+            LoadItems();
         }
 
         private void uxQuit_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
-        private ItemModel selectedItem;
         private void uxItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedItem = (ItemModel)uxItemList.SelectedValue;
@@ -128,13 +128,15 @@ namespace ItemApp
 
         private void uxFileDelete_Loaded(object sender, RoutedEventArgs e)
         {
-            uxFileDelete.IsEnabled = (selectedItem != null);
+            //we're disabling this to allow for anytime selection
+            //uxFileDelete.IsEnabled = (selectedItem != null);
         }
 
         private void uxFileChange_Loaded(object sender, RoutedEventArgs e)
         {
-            uxFileChange.IsEnabled = (selectedItem != null);
-            uxContextFileChange.IsEnabled = uxFileChange.IsEnabled;
+            //we're disabling this to allow for anytime selection
+            //uxFileChange.IsEnabled = (selectedItem != null);
+            //uxContextFileChange.IsEnabled = uxFileChange.IsEnabled;
         }
     }
 }

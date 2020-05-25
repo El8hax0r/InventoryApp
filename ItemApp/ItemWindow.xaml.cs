@@ -23,12 +23,13 @@ namespace ItemApp
         {
             Item = new ItemModel();
 
-            Item.ItemNumber = 0; //Convert.ToInt32(uxItemNumber.Text);
+            Item.ItemId = Item.ItemId;
+            Item.ItemNumber = Convert.ToInt32(uxItemNumber.Text);
             Item.ItemDescription = uxItemDescription.Text;
-            Item.PricePerItem = 0; //uxPricePerItem.Text;
-            Item.QuantityOnHand = 0; //uxQuantityOnHand;
-            //Item.TotalItemsValue = ((Convert.ToDouble(Item.PricePerItem)) * (Convert.ToDouble(Item.QuantityOnHand))).ToString();
-            Item.OurCostPerItem = 0; // Convert.ToDouble(uxOurCostPerItem.Text); //used to contain uxOurCostPerItem.Text
+            Item.PricePerItem = Convert.ToDouble(uxPricePerItem.Text);
+            Item.QuantityOnHand = Convert.ToInt32(uxQuantityOnHand.Text);
+            Item.TotalItemsValue = Math.Round(((Convert.ToDouble(uxQuantityOnHand.Text)) * (Convert.ToDouble(uxPricePerItem.Text))), 2);
+            Item.OurCostPerItem = Convert.ToDouble(uxOurCostPerItem.Text);
             Item.CreatedDate = DateTime.UtcNow; //UTC
 
             // This is the return value of ShowDialog( ) below

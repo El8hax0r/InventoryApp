@@ -15,7 +15,7 @@ namespace ItemDB
         {
         }
 
-        public virtual DbSet<Item> Item { get; set; } //this used to be "Items"
+        public virtual DbSet<Item> Items { get; set; } //this used to be "Items"
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

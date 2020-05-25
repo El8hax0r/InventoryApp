@@ -11,8 +11,8 @@
         <Menu>
             <MenuItem Header="_File">
                 <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click"/>
-                <MenuItem x:Name="uxFileChange" Header="_Change" Click="uxFileChange_Click" Loaded="uxFileChange_Loaded"/>
-                <MenuItem x:Name="uxFileDelete" Header="_Delete" Click="uxFileDelete_Click" Loaded="uxFileDelete_Loaded"/>
+                <MenuItem x:Name="uxFileChange" Header="_Change" Click="uxFileChange_Click" Loaded="uxFileChange_Loaded" IsEnabled="True"/>
+                <MenuItem x:Name="uxFileDelete" Header="_Delete" Click="uxFileDelete_Click" Loaded="uxFileDelete_Loaded" IsEnabled="True"/>
                 <MenuItem x:Name="uxList" Header="_List" Click="uxList_Click"/>
                 <MenuItem x:Name="uxQuit" Header="_Quit" Click="uxQuit_Click"/>
             </MenuItem>
@@ -22,8 +22,8 @@
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="uxContextFileNew" Header="_Add" Click="uxFileNew_Click"/>
-                    <MenuItem x:Name="uxContextFileChange" Header="_Change" Click="uxFileChange_Click"/>
-                    <MenuItem x:Name="uxContextFileDelete" Header="_Delete" Click="uxFileDelete_Click"/>
+                    <MenuItem x:Name="uxContextFileChange" Header="_Change" Click="uxFileChange_Click" IsEnabled="True"/>
+                    <MenuItem x:Name="uxContextFileDelete" Header="_Delete" Click="uxFileDelete_Click" IsEnabled="True"/>
                     <MenuItem x:Name="uxContextRecordList" Header="_List" Click="uxList_Click"/>
                     <MenuItem x:Name="uxContextRecordQuit" Header="_Quit" Click="uxQuit_Click"/>
                 </ContextMenu>
@@ -55,9 +55,9 @@
                             <GridViewColumnHeader Content="Our Cost Per Item" Tag="OurCostPerItem" Click="GridViewColumnHeader_Click"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding ItemsTotalValue}" Width="120">
+                    <GridViewColumn DisplayMemberBinding="{Binding TotalItemsValue}" Width="120">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Items Total Value" Tag="ItemsTotalValue" Click="GridViewColumnHeader_Click"/>
+                            <GridViewColumnHeader Content="Total Items Value" Tag="TotalItemsValue" Click="GridViewColumnHeader_Click"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>

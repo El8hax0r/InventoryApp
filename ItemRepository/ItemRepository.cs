@@ -9,7 +9,7 @@ namespace ItemRepository
     public class ItemModel //this opens the database - then abstracts to next layer
     {
         //these can all be abstracted but are explicit for readability
-        public int Id { get; set; }
+        public int ItemId { get; set; }
         public int ItemNumber { get; set; }
         public string ItemDescription { get; set; }
         public double PricePerItem { get; set; }
@@ -25,15 +25,15 @@ namespace ItemRepository
         {
             var itemDb = ToDbModel(itemModel);
 
-            DatabaseManager.Instance.Item.Add(itemDb);
+            DatabaseManager.Instance.Items.Add(itemDb);
             DatabaseManager.Instance.SaveChanges();
 
             itemModel = new ItemModel
             {
                 OurCostPerItem = itemDb.OurCostPerItem,
-                CreatedDate = itemDb.ItemCreatedDate, //not sure what to do with this
-                ItemDescription = itemDb.ItemDescription, //this should be "Description = "
-                Id = itemDb.ItemId,
+                CreatedDate = itemDb.ItemCreatedDate,
+                ItemDescription = itemDb.ItemDescription,
+                ItemId = itemDb.ItemId,
                 ItemNumber = itemDb.ItemNumber,
                 TotalItemsValue = itemDb.TotalItemsValue,
                 QuantityOnHand = itemDb.QuantityOnHand,
@@ -45,25 +45,25 @@ namespace ItemRepository
         public List<ItemModel> GetAll()
         {
             // Use .Select() to map the database items to ItemModel
-            var items = DatabaseManager.Instance.Item
+            var things = DatabaseManager.Instance.Items
               .Select(t => new ItemModel
               {
                   OurCostPerItem = t.OurCostPerItem,
-                  //CreatedDate = t.ItemCreatedDate, //not sure what to do with this?
+                  CreatedDate = t.ItemCreatedDate,
                   ItemDescription = t.ItemDescription,
-                  Id = t.ItemId,
+                  ItemId = t.ItemId,
                   ItemNumber = t.ItemNumber,
                   TotalItemsValue = t.TotalItemsValue,
                   QuantityOnHand = t.QuantityOnHand,
                   PricePerItem = t.PricePerItem,
               }).ToList();
 
-            return items;
+            return things;
         }
 
         public bool Update(ItemModel itemModel)
         {
-            var original = DatabaseManager.Instance.Item.Find(itemModel.Id);
+            var original = DatabaseManager.Instance.Items.Find(itemModel.ItemId);
 
             if (original != null)
             {
@@ -77,15 +77,15 @@ namespace ItemRepository
 
         public bool Remove(int itemId)
         {
-            var items = DatabaseManager.Instance.Item                   //will this var need to be renamed?? it's also "items" in examples...
-                                .Where(t => t.ItemId == itemId);
+            var things = DatabaseManager.Instance.Items //will this var need to be renamed?? it's also "items" in examples...
+                                .Where(t => t.ItemId == itemId); //used to be "== ItemID or == Id"
 
-            if (items.Count() == 0)
+            if (things.Count() == 0)
             {
                 return false;
             }
 
-            DatabaseManager.Instance.Item.Remove(items.First());
+            DatabaseManager.Instance.Items.Remove(things.First());
             DatabaseManager.Instance.SaveChanges();
 
             return true;
@@ -95,10 +95,10 @@ namespace ItemRepository
         {
             var itemDb = new Item
             {
-                OurCostPerItem = itemModel.OurCostPerItem, //doc says these should all be "itemModel."
+                OurCostPerItem = itemModel.OurCostPerItem,
                 ItemCreatedDate = itemModel.CreatedDate,
                 ItemDescription = itemModel.ItemDescription,
-                ItemId = itemModel.Id,
+                ItemId = itemModel.ItemId,
                 ItemNumber = itemModel.ItemNumber,
                 TotalItemsValue = itemModel.TotalItemsValue,
                 QuantityOnHand = itemModel.QuantityOnHand,
