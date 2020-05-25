@@ -9,7 +9,7 @@ namespace ItemRepository
     public class ItemModel //this opens the database - then abstracts to next layer
     {
         //these can all be abstracted but are explicit for readability
-        public int ItemId { get; set; }
+        //public int ItemId { get; set; }
         public int ItemNumber { get; set; }
         public string ItemDescription { get; set; }
         public double PricePerItem { get; set; }
@@ -33,7 +33,7 @@ namespace ItemRepository
                 OurCostPerItem = itemDb.OurCostPerItem,
                 CreatedDate = itemDb.ItemCreatedDate,
                 ItemDescription = itemDb.ItemDescription,
-                ItemId = itemDb.ItemId,
+                //ItemId = itemDb.ItemId,
                 ItemNumber = itemDb.ItemNumber,
                 TotalItemsValue = itemDb.TotalItemsValue,
                 QuantityOnHand = itemDb.QuantityOnHand,
@@ -51,7 +51,7 @@ namespace ItemRepository
                   OurCostPerItem = t.OurCostPerItem,
                   CreatedDate = t.ItemCreatedDate,
                   ItemDescription = t.ItemDescription,
-                  ItemId = t.ItemId,
+                  //ItemId = t.ItemId,
                   ItemNumber = t.ItemNumber,
                   TotalItemsValue = t.TotalItemsValue,
                   QuantityOnHand = t.QuantityOnHand,
@@ -63,7 +63,7 @@ namespace ItemRepository
 
         public bool Update(ItemModel itemModel)
         {
-            var original = DatabaseManager.Instance.Items.Find(itemModel.ItemId);
+            var original = DatabaseManager.Instance.Items.Find(itemModel.ItemNumber);
 
             if (original != null)
             {
@@ -77,7 +77,7 @@ namespace ItemRepository
 
         public bool Remove(int itemNumber) //used to be itemId
         {
-            var things = DatabaseManager.Instance.Items //will this var need to be renamed?? it's also "items" in examples...
+            var things = DatabaseManager.Instance.Items 
                                 .Where(t => t.ItemNumber == itemNumber); //used to be ".Where(t => t.ItemId == itemId);"
 
             if (things.Count() == 0)
@@ -98,7 +98,7 @@ namespace ItemRepository
                 OurCostPerItem = itemModel.OurCostPerItem,
                 ItemCreatedDate = itemModel.CreatedDate,
                 ItemDescription = itemModel.ItemDescription,
-                ItemId = itemModel.ItemId,
+                //ItemId = itemModel.ItemId,
                 ItemNumber = itemModel.ItemNumber,
                 TotalItemsValue = itemModel.TotalItemsValue,
                 QuantityOnHand = itemModel.QuantityOnHand,

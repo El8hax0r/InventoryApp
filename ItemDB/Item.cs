@@ -5,7 +5,7 @@ namespace ItemDB
 {
     public partial class Item
     {
-        public int ItemId { get; set; }
+        //public int ItemId { get; set; }
         public int ItemNumber { get; set; }
         public string ItemDescription { get; set; }
         public double PricePerItem { get; set; }

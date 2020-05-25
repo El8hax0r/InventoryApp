@@ -23,7 +23,7 @@ namespace ItemApp
         {
             Item = new ItemModel();
 
-            Item.ItemId = Item.ItemId;
+            //Item.ItemId = Item.ItemId;
             Item.ItemNumber = Convert.ToInt32(uxItemNumber.Text);
             Item.ItemDescription = uxItemDescription.Text;
             Item.PricePerItem = Convert.ToDouble(uxPricePerItem.Text);

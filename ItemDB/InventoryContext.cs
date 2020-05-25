@@ -15,7 +15,7 @@ namespace ItemDB
         {
         }
 
-        public virtual DbSet<Item> Items { get; set; } //this used to be "Items"
+        public virtual DbSet<Item> Items { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,10 +30,10 @@ namespace ItemDB
         {
             modelBuilder.Entity<Item>(entity =>
             {
-                entity.HasKey(e => e.ItemId)
+                entity.HasKey(e => e.ItemNumber)
                     .HasName("PK_User");
 
-                entity.Property(e => e.ItemId).HasColumnName("ItemID");
+                entity.Property(e => e.ItemNumber).HasColumnName("ItemNumber");
 
                 entity.Property(e => e.ItemDescription)
                     .IsRequired()

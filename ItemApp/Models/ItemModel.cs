@@ -6,7 +6,7 @@ namespace ItemApp.Models
 {
     public class ItemModel
     {
-        public int ItemId { get; set; }
+        //public int ItemId { get; set; }
         public int ItemNumber { get; set; }
         public string ItemDescription { get; set; }
         public double PricePerItem { get; set; }
@@ -22,7 +22,7 @@ namespace ItemApp.Models
                 OurCostPerItem = OurCostPerItem,
                 CreatedDate = CreatedDate,
                 ItemDescription = ItemDescription,
-                ItemId = ItemId,
+                //ItemId = ItemId,
                 ItemNumber = ItemNumber,
                 TotalItemsValue = TotalItemsValue,
                 QuantityOnHand = QuantityOnHand,
@@ -39,7 +39,7 @@ namespace ItemApp.Models
                 OurCostPerItem = respositoryModel.OurCostPerItem,
                 CreatedDate = respositoryModel.CreatedDate,
                 ItemDescription = respositoryModel.ItemDescription,
-                ItemId = respositoryModel.ItemId,
+                //ItemId = respositoryModel.ItemId,
                 ItemNumber = respositoryModel.ItemNumber,
                 TotalItemsValue = respositoryModel.TotalItemsValue,
                 QuantityOnHand = respositoryModel.QuantityOnHand,

@@ -94,6 +94,7 @@ namespace ItemApp
             if (window.ShowDialog() == true)
             {
                 App.ItemRepository.Update(window.Item.ToRepositoryModel());
+                selectedItem = null;
                 LoadItems();
             }
         }
