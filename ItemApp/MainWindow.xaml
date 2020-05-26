@@ -11,8 +11,8 @@
         <Menu>
             <MenuItem Header="_File">
                 <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click"/>
-                <MenuItem x:Name="uxFileChange" Header="_Change" Click="uxFileChange_Click" Loaded="uxFileChange_Loaded" IsEnabled="True"/>
-                <MenuItem x:Name="uxFileDelete" Header="_Delete" Click="uxFileDelete_Click" Loaded="uxFileDelete_Loaded" IsEnabled="True"/>
+                <MenuItem x:Name="uxFileChange" Header="_Change" Click="uxFileChange_Click" Loaded="uxFileChange_Loaded"/>
+                <MenuItem x:Name="uxFileDelete" Header="_Delete" Click="uxFileDelete_Click" Loaded="uxFileDelete_Loaded"/>
                 <MenuItem x:Name="uxList" Header="_List" Click="uxList_Click"/>
                 <MenuItem x:Name="uxQuit" Header="_Quit" Click="uxQuit_Click"/>
             </MenuItem>
@@ -22,8 +22,8 @@
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="uxContextFileNew" Header="_Add" Click="uxFileNew_Click"/>
-                    <MenuItem x:Name="uxContextFileChange" Header="_Change" Click="uxFileChange_Click" IsEnabled="True"/>
-                    <MenuItem x:Name="uxContextFileDelete" Header="_Delete" Click="uxFileDelete_Click" IsEnabled="True"/>
+                    <MenuItem x:Name="uxContextFileChange" Header="_Change" Click="uxFileChange_Click"/>
+                    <MenuItem x:Name="uxContextFileDelete" Header="_Delete" Click="uxFileDelete_Click"/>
                     <MenuItem x:Name="uxContextRecordList" Header="_List" Click="uxList_Click"/>
                     <MenuItem x:Name="uxContextRecordQuit" Header="_Quit" Click="uxQuit_Click"/>
                 </ContextMenu>

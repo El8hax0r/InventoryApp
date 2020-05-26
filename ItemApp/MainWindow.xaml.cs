@@ -1,20 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using ItemApp;
 using ItemApp.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ItemApp
 {
@@ -49,7 +36,7 @@ namespace ItemApp
         {
             var items = App.ItemRepository.GetAll();
 
-            uxItemList.ItemsSource = items //".ItemsSource" is in the example, maybe needs changed?
+            uxItemList.ItemsSource = items
                 .Select(t => ItemModel.ToModel(t)) //.ItemModel.ToModel?
                                                    // or // 
                                                    //.Select(RepositoryItem => ItemModel.ToModel(RepositoryItem))
@@ -101,8 +88,27 @@ namespace ItemApp
 
         private void uxFileDelete_Click(object sender, RoutedEventArgs e)
         {
-            App.ItemRepository.Remove(selectedItem.ItemNumber);
-            selectedItem = null;
+            if (selectedItem == null)
+            {
+                var window = new DeleteWindow();
+
+                if (window.ShowDialog() == true)
+                {
+                    var uiItemModel = window.Item;
+
+                    var repositoryItemModel = uiItemModel.ToRepositoryModel();
+
+                    App.ItemRepository.Remove(repositoryItemModel.ItemNumber);
+                    selectedItem = null;
+                    LoadItems();
+                }
+            }
+            else
+            {
+                App.ItemRepository.Remove(selectedItem.ItemNumber);
+                selectedItem = null;
+            }
+            
             LoadItems();
         }
         private void uxList_Click(object sender, RoutedEventArgs e)
@@ -124,7 +130,6 @@ namespace ItemApp
             var column = (sender as GridViewColumnHeader);
 
             string sortBy = column.Tag.ToString();
-            //if (listviewsort)
         }
 
         private void uxFileDelete_Loaded(object sender, RoutedEventArgs e)
